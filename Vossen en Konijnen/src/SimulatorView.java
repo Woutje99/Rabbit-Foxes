@@ -41,6 +41,8 @@ public class SimulatorView extends JFrame
     private Map<Class, Color> colors;
     // A statistics object computing and storing simulation information
     private FieldStats stats;
+    
+    private String test;
 	
     private Simulator simulator;
 	
