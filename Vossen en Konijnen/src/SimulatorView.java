@@ -32,10 +32,12 @@ public class SimulatorView extends JFrame
     private JPanel leftPanel;
     private JButton oneStep;
     private JButton hundredStep;
+    private JButton reset;
     
     // ActionListener handlers declareren
     private OneStepHandler osHandler;
     private HundredStepsHandler hsHandler;
+    private ResetHandler resetHandler;
 
     // A map for storing colors for participants in the simulation
     private Map<Class, Color> colors;
@@ -74,7 +76,12 @@ public class SimulatorView extends JFrame
         // Honderd stappen JButton instantieren en een actionListener implementeren
         hundredStep = new JButton("100 stappen");
         hsHandler = new HundredStepsHandler();
-        hundredStep.addActionListener(hsHandler);    
+        hundredStep.addActionListener(hsHandler);  
+        
+        // Reset knop
+        reset = new JButton("Reset");
+        resetHandler = new ResetHandler();
+        reset.addActionListener(resetHandler);  
         
         setLocation(100, 50);
         
@@ -82,6 +89,7 @@ public class SimulatorView extends JFrame
         
         leftPanel.add(oneStep);
         leftPanel.add(hundredStep);
+        leftPanel.add(reset);
         Container contents = getContentPane();
         contents.add(stepLabel, BorderLayout.NORTH);
         contents.add(fieldView, BorderLayout.CENTER);
@@ -267,6 +275,12 @@ public class SimulatorView extends JFrame
     				simulator.simulate(100);
     			}
     		}.start();
+    	}
+    }
+    
+    public class ResetHandler implements ActionListener {
+    	public void actionPerformed(ActionEvent e) {
+    		simulator.reset();
     	}
     }
   	}
