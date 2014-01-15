@@ -57,7 +57,7 @@ public class SimulatorView extends JFrame
     {
         this.simulator = simulator;
         
-        //test
+        //testen
         
         stats = new FieldStats();
         colors = new LinkedHashMap<Class, Color>();
