@@ -76,7 +76,7 @@ public class SimulatorView extends JFrame
         oneStep.addActionListener(osHandler);    
         
         // Honderd stappen JButton instantieren en een actionListener implementeren
-        hundredStep = new JButton("100 stappen");
+        hundredStep = new JButton("aantal stappen");
         hsHandler = new HundredStepsHandler();
         hundredStep.addActionListener(hsHandler);  
         
