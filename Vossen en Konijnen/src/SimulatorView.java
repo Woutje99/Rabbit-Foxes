@@ -41,6 +41,8 @@ public class SimulatorView extends JFrame
     private Map<Class, Color> colors;
     // A statistics object computing and storing simulation information
     private FieldStats stats;
+    
+    private String test;
 	
     private Simulator simulator;
 	
@@ -259,8 +261,13 @@ public class SimulatorView extends JFrame
      * als er op de simuleer 100 steps JButton wordt geklikt
      */
     public class HundredStepsHandler implements ActionListener {
-            public void actionPerformed(ActionEvent e) {
-                    simulator.simulate(200);
-            }
+    	public void actionPerformed(ActionEvent e) {
+    		new Thread() {
+    			public void run() {
+    				simulator.simulate(100);
+    			}
+    		}.start();
+    	}
     }
-}
+  	}
+
