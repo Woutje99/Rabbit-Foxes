@@ -79,6 +79,7 @@ public void buttonEvent() {
 					while(gestart){
     					simulator.simulate(1);
     					circlestatsview.repaint();
+    					simview.repaint();
 					}
 				
 			}
