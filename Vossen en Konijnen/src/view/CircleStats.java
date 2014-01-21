@@ -29,6 +29,7 @@ public class CircleStats extends JPanel
 		double total = 0.0;
 		double rabbits = 0.0;
 		double foxes = 0.0;
+		double bears = 0.0;
 		
 		System.out.println(counters.size());
 		
@@ -51,20 +52,28 @@ public class CircleStats extends JPanel
         	{
         		foxes = info.getCount();
         	}
+        	if(info.getName().equals("model.Bear"))
+        	{
+        		bears = info.getCount();
+        	}
         }
         
         double oneperc = total / 100;
     	double rabbitperc = rabbits / oneperc;
     	double foxesperc = foxes / oneperc;
+    	double bearsperc = bears / oneperc;
     	
     	double rabbitpie = 3.6 * rabbitperc;
     	double foxpie = 3.6 * foxesperc;
-
+    	double bearpie = 3.6 * bearsperc;
+    	
     	g.drawArc(10,10, 100, 100, 90, 360);
 		g.setColor(Color.orange);
     	g.fillArc(10, 10,100, 100, 90, (int) rabbitpie);
 		g.setColor(Color.blue);
     	g.fillArc(10, 10,100, 100, 90 + (int) rabbitpie, (int) foxpie);
+    	g.setColor(Color.red);
+    	g.fillArc(10, 10,100, 100, 90 + (int) rabbitpie + (int) foxpie, (int) bearpie);
 	}
 	
 }

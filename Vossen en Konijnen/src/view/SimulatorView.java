@@ -9,6 +9,8 @@ import java.awt.*;
 
 import javax.swing.*;
 //import javax.swing.event.*;
+import javax.swing.JTabbedPane;
+
 
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -55,8 +57,9 @@ public class SimulatorView extends JFrame {
 	//Boolean om te checken of er op de startknop gedrukt is
 	private boolean gestart = false;
 	
+	// Om het CircleStats object in op te slaan
 	private CircleStats circlestatsview;
-
+	
 	/**
 	 * Create a view of the given width and height.
 	 * 
@@ -104,6 +107,8 @@ public class SimulatorView extends JFrame {
 		
 		fieldView = new FieldView(height, width);
 
+		
+		
 		leftPanel.add(oneStep);
 		leftPanel.add(hundredStep);
 		leftPanel.add(reset);
@@ -116,10 +121,10 @@ public class SimulatorView extends JFrame {
 		contents.add(fieldView, BorderLayout.CENTER);
 		contents.add(population, BorderLayout.SOUTH);
 		contents.add(leftPanel, BorderLayout.WEST);
-
 		pack();
 		setVisible(true);
 	}
+
 
 	/**
 	 * Define a color to be used for a given class of animal.

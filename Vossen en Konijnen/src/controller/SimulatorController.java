@@ -33,6 +33,7 @@ public void buttonEvent() {
 	simview.getOneStep().addActionListener(new ActionListener() {
 		public void actionPerformed(ActionEvent e) {
 			simulator.simulateOneStep();
+			circlestatsview.repaint();
 		}});
 	
 	simview.getHunderdStep().addActionListener(new ActionListener() {
@@ -40,6 +41,7 @@ public void buttonEvent() {
 			new Thread() {
 				public void run() {
 					simulator.simulate(100);
+					circlestatsview.repaint();
 				}
 			}.start();
 			
@@ -54,6 +56,7 @@ public void buttonEvent() {
 							"Aantal stappen");
 					int steps = Integer.parseInt(s);
 					simulator.simulate(steps);
+					circlestatsview.repaint();
 				}
 			}.start();
 		}

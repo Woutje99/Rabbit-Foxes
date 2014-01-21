@@ -15,23 +15,27 @@ import java.util.Random;
  * @author David J. Barnes and Michael Kölling
  * @version 2011.07.31
  */
-public class Fox extends Animal
+public class Bear extends Animal
 {
     // Characteristics shared by all foxes (class variables).
     
-    // The age at which a fox can start to breed.
-    private static final int BREEDING_AGE = 15;
-    // The age to which a fox can live.
+    // The age at which a bear can start to breed.
+    private static final int BREEDING_AGE = 20;
+    // The age to which a bear can live.
     private static final int MAX_AGE = 150;
-    // The likelihood of a fox breeding.
-    private static final double BREEDING_PROBABILITY = 0.08;
+    // The likelihood of a bear breeding.
+    private static final double BREEDING_PROBABILITY = 0.04;
     // The maximum number of births.
-    private static final int MAX_LITTER_SIZE = 4;
+    private static final int MAX_LITTER_SIZE = 2;
     // The food value of a single rabbit. In effect, this is the
     // number of steps a fox can go before it has to eat again.
     private static final int RABBIT_FOOD_VALUE = 9;
+ 
+    private static final int FOX_FOOD_VALUE = 7;
     // A shared random number generator to control breeding.
     private static final Random rand = Randomizer.getRandom();
+    
+    private static final int CHANCE_ESCAPE_FOX = 25; 
     
     // Individual characteristics (instance fields).
     // The fox's age.
@@ -47,7 +51,7 @@ public class Fox extends Animal
      * @param field The field currently occupied.
      * @param location The location within the field.
      */
-    public Fox(boolean randomAge, Field field, Location location)
+    public Bear(boolean randomAge, Field field, Location location)
     {
         super(field, location);
         if(randomAge) {
@@ -67,12 +71,12 @@ public class Fox extends Animal
      * @param field The field currently occupied.
      * @param newFoxes A list to return newly born foxes.
      */
-    public void act(List<Animal> newFoxes)
+    public void act(List<Animal> newBears)
     {
         incrementAge();
         incrementHunger();
         if(isAlive()) {
-            giveBirth(newFoxes);            
+            giveBirth(newBears);            
             // Move towards a source of food if found.
             Location newLocation = findFood();
             if(newLocation == null) { 
@@ -133,6 +137,15 @@ public class Fox extends Animal
                     return where;
                 }
             }
+            if(animal instanceof Fox && rand.nextInt(100) > CHANCE_ESCAPE_FOX) {
+            	System.out.println("true");
+            	Fox fox = (Fox) animal;
+            	if(fox.isAlive()){
+            		fox.setDead();
+            		foodLevel = FOX_FOOD_VALUE;
+            		return where;
+            	}
+            }
         }
         return null;
     }
@@ -142,7 +155,7 @@ public class Fox extends Animal
      * New births will be made into free adjacent locations.
      * @param newFoxes A list to return newly born foxes.
      */
-    private void giveBirth(List<Animal> newFoxes)
+    private void giveBirth(List<Animal> newBears)
     {
         // New foxes are born into adjacent locations.
         // Get a list of adjacent free locations.
@@ -151,8 +164,8 @@ public class Fox extends Animal
         int births = breed();
         for(int b = 0; b < births && free.size() > 0; b++) {
             Location loc = free.remove(0);
-            Fox young = new Fox(false, field, loc);
-            newFoxes.add(young);
+            Bear young = new Bear(false, field, loc);
+            newBears.add(young);
         }
     }
         

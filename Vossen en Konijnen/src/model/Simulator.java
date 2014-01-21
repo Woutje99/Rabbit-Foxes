@@ -30,6 +30,8 @@ public class Simulator
     // The probability that a rabbit will be created in any given grid position.
     private static final double RABBIT_CREATION_PROBABILITY = 0.08;    
 
+    private static final double BEAR_CREATION_PROBABILITY = 0.006;    
+
     // List of animals in the field.
     private List<Animal> animals;
     // The current state of the field.
@@ -76,6 +78,7 @@ public class Simulator
         
         view.setColor(Rabbit.class, Color.ORANGE);
         view.setColor(Fox.class, Color.BLUE);
+        view.setColor(Bear.class, Color.RED);
         controller = new SimulatorController(view, this, circlestatview);
         controller.buttonEvent();
         // Setup a valid starting point.
@@ -162,6 +165,12 @@ public class Simulator
                     Rabbit rabbit = new Rabbit(true, field, location);
                     animals.add(rabbit);
                 }
+                else if(rand.nextDouble() <= BEAR_CREATION_PROBABILITY) {
+                    Location location = new Location(row, col);
+                    Bear bear = new Bear(true, field, location);
+                    animals.add(bear);
+                }
+                
                 // else leave the location empty.
             }
         }
